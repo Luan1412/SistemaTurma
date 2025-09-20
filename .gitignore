@@ -1,0 +1,15 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Eclipse/IntelliJ/VSCode files
+.vscode/
+.idea/
+*.iml
+
+# Build directories
+bin/
+out/
+target/
