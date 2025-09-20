@@ -80,7 +80,7 @@ public class Menuu {
 
     void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
-        int quantidade = 0, escolha=0;
+        int escolha=0;
         boolean continuar = true;
         Turma t1 = null;
         do {
@@ -93,6 +93,7 @@ public class Menuu {
             System.out.println("2 - Mostrar lista");
             System.out.println("3 - Calcular média");
             System.out.println("4 - Contar maiores/menores");
+            System.out.println("5 - Remover pessoa");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
 
@@ -143,6 +144,15 @@ public class Menuu {
                     } else
                         System.out.println("Crie uma turma primeiro.");
                     break;
+
+                    case 5:
+                    if (t1 != null) {
+                        System.out.println("Digite o nome da pessoa para remover.");
+                        String removePessoa = sc.nextLine();
+                        t1.removerPessoa(removePessoa);
+                        System.out.println("Pessoa removida com sucesso");
+
+                    }
 
                 default:
                     System.out.println("Opção inválida!");

@@ -8,6 +8,23 @@ public class Turma {
         listPessoas = new Pessoa[qntPessoa];
     }
 
+
+    void removerPessoa(String nome){
+        boolean removeu = false;
+        for (int i = 0; i < listPessoas.length; i++) {
+            if (listPessoas[i] != null && listPessoas[i].getNome().equals(nome)) {
+                listPessoas[i]=null;
+                removeu=true; 
+                break;               
+            }    
+        }
+        if (removeu) {
+                System.out.println("Pessoa"+nome+" removida com sucesso!.");
+            }else{
+                System.out.println("Erro: pessoa"+nome+"não encontrada.");
+            }
+    }
+
     void addPessoa(String nome, int idade, double altura) {
 
         boolean adicionou = false; // flag para saber se a pessoa foi adicionada
