@@ -1,5 +1,7 @@
 package aplicacao;
 
+import java.util.Scanner;
+
 public class Turma {
 
     private Pessoa listPessoas[];
@@ -8,8 +10,70 @@ public class Turma {
         listPessoas = new Pessoa[qntPessoa];
     }
 
+    boolean editarPessoa(String nome,Scanner sc){
+        boolean encontrouPessoa=false;
 
-    void removerPessoa(String nome){
+        for (int i = 0; i < listPessoas.length; i++) {
+            if (listPessoas[i] != null && listPessoas[i].getNome().equals(nome)) {
+               
+                encontrouPessoa= true;
+
+                boolean continuarEditando= true;
+                while (continuarEditando) {
+                    System.out.println("\n=== Bem-vindo ao modo edição ===");
+                    System.out.println("O que do(a) "+listPessoas[i].getNome()+" você quer editar?");
+                    System.out.println("Escolha o que você deseja fazer:");
+                    System.out.println("1 - Nome");
+                    System.out.println("2 - Idade");
+                    System.out.println("3 - Altura");
+                    System.out.println("0 - Sair da Edição");
+                    System.out.print("Opção: ");
+
+                    int escolha = sc.nextInt();
+                    sc.nextLine();
+
+                    switch (escolha) {
+                        
+                        case 0:
+                        System.out.println("Saindo do modo edição...");
+                        continuarEditando=false;
+                        break;
+                        
+                        case 1:
+                            System.out.println("\n=== Você escolheu editar o nome ====");
+                            System.out.println("Edite o nome");
+                            System.out.println("Nome: ");
+                            String nomeEditado = sc.nextLine();
+                            listPessoas[i].setNome(nomeEditado);
+                            break;
+                        case 2:
+                            System.out.println("\n=== Você escolheu editar a idade ====");
+                            System.out.println("Edite a idade");
+                            System.out.println("Idade: ");
+                            int idade = sc.nextInt();
+                            listPessoas[i].setIdade(idade);
+                            break;
+                         case 3:
+                            System.out.println("\n=== Você escolheu editar a altura ====");
+                            System.out.println("Edite a altura");
+                            System.out.println("Altura: ");
+                            double altura = sc.nextDouble();
+                            listPessoas[i].setAltura(altura);
+                            break;    
+                        default:
+                            System.out.println("Digite uma opção válida");
+                            continue;
+                    }
+                    break;  
+                }
+                       
+            } 
+        }
+
+        return encontrouPessoa;
+    }
+
+    boolean removerPessoa(String nome){
         boolean removeu = false;
         for (int i = 0; i < listPessoas.length; i++) {
             if (listPessoas[i] != null && listPessoas[i].getNome().equals(nome)) {
@@ -18,11 +82,7 @@ public class Turma {
                 break;               
             }    
         }
-        if (removeu) {
-                System.out.println("Pessoa"+nome+" removida com sucesso!.");
-            }else{
-                System.out.println("Erro: pessoa"+nome+"não encontrada.");
-            }
+        return removeu;
     }
 
     void addPessoa(String nome, int idade, double altura) {

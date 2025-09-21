@@ -146,13 +146,39 @@ public class Menuu {
                     break;
 
                     case 5:
-                    if (t1 != null) {
+                    if (t1 != null ) {
                         System.out.println("Digite o nome da pessoa para remover.");
                         String removePessoa = sc.nextLine();
-                        t1.removerPessoa(removePessoa);
-                        System.out.println("Pessoa removida com sucesso");
 
+                        boolean excluiu = t1.removerPessoa(removePessoa);
+
+                        if (excluiu) {
+                            System.out.println("Pessoa removida com sucesso.");
+                        }else{
+                            System.out.println("Erro: Pessoa não encontada.");
+                        }
+                        
+                    }else{
+                        System.out.println("Crie uma turma primeiro");
                     }
+                    break;
+
+                    case 6:
+                    if (t1!=null) {
+                        System.out.println("Digite o nome da pessoa que você quer editar.");
+                        String editaPessoa = sc.nextLine();
+
+                        boolean encontrou = t1.editarPessoa(editaPessoa, sc);
+
+                        if (encontrou) {
+                            System.out.println("Pessoa "+editaPessoa+ "editada com sucesso!");
+                        } else {
+                            System.out.println("Erro: pessoa com o nome: " + editaPessoa+ "não foi encontrada.");
+                        }
+                    }else{
+                        System.out.println("Crie uma turma primeiro");
+                    }
+                    break;
 
                 default:
                     System.out.println("Opção inválida!");
