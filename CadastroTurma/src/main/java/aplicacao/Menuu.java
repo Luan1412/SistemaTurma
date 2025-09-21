@@ -80,7 +80,7 @@ public class Menuu {
 
     void mostrarMenu() {
         Scanner sc = new Scanner(System.in);
-        int quantidade = 0, escolha=0;
+        int escolha=0;
         boolean continuar = true;
         Turma t1 = null;
         do {
@@ -93,6 +93,7 @@ public class Menuu {
             System.out.println("2 - Mostrar lista");
             System.out.println("3 - Calcular média");
             System.out.println("4 - Contar maiores/menores");
+            System.out.println("5 - Remover pessoa");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
 
@@ -142,6 +143,41 @@ public class Menuu {
                         t1.qntdMaiorMenorIdade();
                     } else
                         System.out.println("Crie uma turma primeiro.");
+                    break;
+
+                    case 5:
+                    if (t1 != null ) {
+                        System.out.println("Digite o nome da pessoa para remover.");
+                        String removePessoa = sc.nextLine();
+
+                        boolean excluiu = t1.removerPessoa(removePessoa);
+
+                        if (excluiu) {
+                            System.out.println("Pessoa removida com sucesso.");
+                        }else{
+                            System.out.println("Erro: Pessoa não encontada.");
+                        }
+                        
+                    }else{
+                        System.out.println("Crie uma turma primeiro");
+                    }
+                    break;
+
+                    case 6:
+                    if (t1!=null) {
+                        System.out.println("Digite o nome da pessoa que você quer editar.");
+                        String editaPessoa = sc.nextLine();
+
+                        boolean encontrou = t1.editarPessoa(editaPessoa, sc);
+
+                        if (encontrou) {
+                            System.out.println("Pessoa "+editaPessoa+ "editada com sucesso!");
+                        } else {
+                            System.out.println("Erro: pessoa com o nome: " + editaPessoa+ "não foi encontrada.");
+                        }
+                    }else{
+                        System.out.println("Crie uma turma primeiro");
+                    }
                     break;
 
                 default:
